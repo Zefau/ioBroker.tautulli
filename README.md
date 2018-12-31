@@ -18,6 +18,34 @@ This adapter receives webhook events of Tautulli and thus by Plex Media Server.
 
 
 ## Setup instructions
+Check out [Tautulli Preview](https://tautulli.com/#preview) and [install it on your preferred system](https://github.com/Tautulli/Tautulli-Wiki/wiki/Installation) if you are interested.
+
+Once installed open the settings page from Tautulli dashboard and navigate to Notification Agents as seen below:
+
+![](/img/screenshot_install-01-settings.png)
+
+Click _Add a new notification agent_ and _Webhook_.
+
+1. **via local network**: If you are running both ioBroker and Tautulli on your local network, a local webhook is sufficient. If either one of them is on a foreign network, you may choose the option to set a webook via Internet (see below). For a local webook, enter the ioBroker IP adress with the port set in ioBroker.tautulli settings in _Webhook URL_ following the form ```http://192.168.2.99:1990```:
+![](/img/screenshot_install-02-webhook.png)
+
+2. **via Internet**: If ioBroker and Tautulli are running on different networks, you may set a webook via Internet using ioBroker.cloud or ioBroker.iot. **DESCRIPTION TO FOLLOW**
+
+Furthermore, choose ```PUT``` for the _Webhook Method_ and enter any description you like in _Description_. Go to the _Triggers_ tab and select all options.
+
+To test the connection, go to the _Test Notifications_ tab, fill in ```{"test": true}``` and click _Test Webhook_:
+
+![](/img/screenshot_install-03-test.png)
+
+The ioBroker Log should show:
+
+```
+tautulli.0	2018-12-31 18:08:38.241	info	Connection tested successfully!
+tautulli.0	2018-12-31 18:08:38.241	info	Received an event from Tautulli.
+```
+
+Finally, go to _Data_ tab and set up all messages to your needs. **This is important for ioBroker.tautulli** to receive data. For example input, see below.
+
 
 ## JSON data format
 If set up correctly, the ioBroker.tautulli adapter will receive notification from Tautulli in the JSON format.
