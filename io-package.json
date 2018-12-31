@@ -1,0 +1,42 @@
+{
+    "common": {
+        "name": "Tautulli",
+        "version": "0.1.0",
+        "title": "Monitor your Plex Media Server",
+        "desc": "Tautulli Adapter to monitor your Plex Media Server",
+        "news": {
+            "0.1.0": {
+                "en": "initial checkin",
+                "de": "Erste version",
+                "ru": "первая версия"
+            }
+        },
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "icon": "tautulli.jpeg",
+        "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.tautulli/master/admin/tautulli.jpeg",
+        "keywords": [
+            "tautulli",
+            "plex",
+			"media"
+        ],
+        "readme": "https://github.com/Zefau/ioBroker.tautulli/blob/master/README.md",
+        "loglevel": "info",
+		"materialize": true,
+		"enabled": true,
+        "messagebox": true,
+		"subscribe": "messagebox",
+        "type": "multimedia",
+        "authors": [
+            {
+                "name": "Zefau",
+                "email": "zefau@mailbox.org"
+            }
+        ]
+    },
+    "native": {
+    },
+    "objects": [],
+    "instanceObjects": [
+    ]
+}
