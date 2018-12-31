@@ -284,6 +284,9 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 ### Notification Exclusion Tags
 
 
+## Smart Home / Alexa integration using ioBroker.javascript
+Will follow..
+
 
 ## Changelog
 
