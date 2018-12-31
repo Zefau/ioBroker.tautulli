@@ -1,0 +1,42 @@
+{
+  "name": "iobroker.tautulli",
+  "version": "0.1.0",
+  "description": "Monitor your Plex Media Server",
+  "author": {
+    "name": "zefau",
+    "email": "zefau@mailbox.org"
+  },
+  "contributors": [
+    {
+      "name": "zefau",
+      "email": "zefau@mailbox.org"
+    }
+  ],
+  "homepage": "https://github.com/Zefau/ioBroker.tautulli",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "tautulli",
+    "plex",
+    "media"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zefau/ioBroker.tautulli"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mocha": "^4.1.0",
+    "chai": "^4.1.2"
+  },
+  "main": "main.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha --exit"
+  },
+  "bugs": {
+    "url": "https://github.com/Zefau/ioBroker.tautulli/issues"
+  },
+  "readmeFilename": "README.md"
+}
