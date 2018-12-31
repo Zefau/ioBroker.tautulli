@@ -22,10 +22,7 @@
         ],
         "readme": "https://github.com/Zefau/ioBroker.tautulli/blob/master/README.md",
         "loglevel": "info",
-		"materialize": true,
-		"enabled": true,
-        "messagebox": true,
-		"subscribe": "messagebox",
+	"materialize": true,
         "type": "multimedia",
         "authors": [
             {
