@@ -1,6 +1,6 @@
 {
     "common": {
-        "name": "Tautulli",
+        "name": "tautulli",
         "version": "0.1.0",
         "title": "Monitor your Plex Media Server",
         "desc": "Tautulli Adapter to monitor your Plex Media Server",
