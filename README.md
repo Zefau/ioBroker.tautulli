@@ -22,13 +22,13 @@ This adapter receives webhook events of Tautulli and thus by Plex Media Server.
 ## JSON data format
 If set up correctly, the ioBroker.tautulli adapter will receive notification from Tautulli in the JSON format.
 
-Please make sure the format **always** follows the format ```{"title": "...", "message": "..."}```. The placeholders ```...``` may be replaced by any string (and contain any variable defined in the (_List of available parameters_)[].
+Please make sure the format **always** follows the format ```{"title": "...", "message": "..."}```. The placeholders ```...``` may be replaced by any string (and contain any variable defined in the [List of available parameters](https://github.com/Zefau/ioBroker.tautulli#list-of-available-parameters)).
 
 ## Webhook data
 
 | Type of Notification | Example of JSON data |
 | -------------------- | -------------------- |
-| Playback Start | _to be defined_ |
+| Playback Start | ```{"title": "Playback of {media_type} started", "message": "{user} ({player}) started playing {title}."}``` |
 | Playback Stop | _to be defined_ |
 | Playback Pause | _to be defined_ |
 | Playback Resume | _to be defined_ |
