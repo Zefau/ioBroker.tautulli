@@ -1,20 +1,20 @@
 'use strict';
 const utils = require(__dirname + '/lib/utils'); // Get common adapter utils
 const adapter = utils.Adapter('tautulli');
-const _http = require('http');
+
+const _Tautulli = require('tautulli-api');
 
 /*
  * internal libraries
  */
 const Library = require(__dirname + '/lib/library.js');
+const params = require(__dirname + '/tautulli-parameters.json');
 
 /*
  * variables initiation
  */
 var library = new Library(adapter);
-var nodes = {
-	
-};
+var tautulli, data;
 
 /*
  * ADAPTER UNLOAD
@@ -39,32 +39,22 @@ adapter.on('unload', function(callback)
  */
 adapter.on('ready', function()
 {
-	// usage of ioBroker.cloud / ioBroker.iot, thus add listener
-	if (adapter.config.iobroker !== undefined && adapter.config.iobroker !== '')
+	/*
+	 * initialize Tautulli API
+	 *
+	 */
+	if (!adapter.config.api_ip || !adapter.config.api_token)
 	{
-		adapter.config.iot = adapter.config.iot !== '' ? adapter.config.iot : 'iot.0.services.custom_tautulli';
-		adapter.getForeignState(adapter.config.iot, function(err, state)
-		{
-			// ioBroker.iot state not defined
-			if (err !== null || state === null)
-			{
-				adapter.log.warn('ioBroker.iot link for custom service given, but ioBroker.iot custom state wrong or not created!');
-				return;
-			}
-			
-			// listen to ioBroker.iot state changes
-			else
-			{
-				adapter.subscribeForeignStates(adapter.config.iot);
-				adapter.log.info('Listening to ioBroker.iot link for custom service (' + adapter.config.iot + ').');
-			}
-		})
+		adapter.log.warn('IP or API token missing! Please go to settings and fill in IP and the API token first!');
+		return;
 	}
-	else
-		adapter.log.info('ioBroker.iot link for custom service not defined. Thus, only listening on local network.');
 	
-	// listen to internal port
-	_http.createServer(listener(getEvent)).listen(adapter.config.port || 1990);
+	// initialize tautulli class
+	tautulli = new _Tautulli(adapter.config.api_ip, adapter.config.api_port || '8181', adapter.config.api_token);
+	
+	retrieveData();
+	if (adapter.config.refresh !== undefined && adapter.config.refresh > 10)
+		setInterval(function() {retrieveData()}, Math.round(parseInt(adapter.config.refresh)*1000));
 });
 
 /*
@@ -75,71 +65,240 @@ adapter.on('stateChange', function(id, state)
 {
 	adapter.log.debug('State of ' + id + ' has changed ' + JSON.stringify(state) + '.');
 	
-	if (id === adapter.config.iot || id === 'iot.0.services.custom_tautulli')
-	{
-		try
-		{
-			var parsed = JSON.parse(state);
-			
-			if (parsed.val !== undefined)
-				getEvent(JSON.parse(parsed.val));
-			
-			else
-				adapter.log.warn('Invalid message received from Tautulli webhook!');
-		}
-		catch(e)
-		{
-			adapter.log.warn('Invalid data received from Tautulli webhook!');
-			//adapter.log.debug(JSON.stringify(state));
-		}
-	}
 });
 
 /**
- * Listen to data on the webhook.
- *
+ * Verify is API response is successful.
  *
  */
-function listener(callback)
+function is(res)
 {
-	adapter.log.debug('Webhook listener attached.');
-	return function(request, response)
+	if (res === undefined || res.response === undefined || res.response.result === undefined || res.response.result !== 'success')
 	{
-		var data = [];
-		request
-			.on('error', function(err) {callback({result: false, error: err})})
-			.on('data', function(chunk) {data.push(chunk)})
-			.on('end', function()
-			{
-				var result = null;
-				try
-				{
-					data = JSON.parse(Buffer.concat(data).toString());
-					data.timestamp = Math.round(Date.now()/1000);
-					result = {result: true, data: data};
-				}
-				catch(err)
-				{
-					result = {result: false, error: err.message};
-				}
-				
-				callback(result);
-			});
+		adapter.log.warn('API response invalid!');
+		adapter.log.debug(JSON.stringify(res));
+		return false;
 	}
+	else if (res.response.message === 'Invalid apikey')
+	{
+		adapter.log.warn('Invalid API key. No results retrieved!');
+		return false;
+	}
+	
+	else
+		return true;
 }
 
 /**
- * Handle to event data.
+ * Retrieve data from the Tautulli API.
  *
- * @param	{object}	res
- * @param	{string}	res.title		Title of event
- * @param	{string}	res.message		Message of event
- * @param	{intetger}	res.timestamp	Timestamp of event
- * @return	void
+ * Available API methods:
+ *	- add_newsletter_config
+ *	- add_notifier_config
+ *	- arnold
+ *	- backup_config
+ *	- backup_db
+ *	- delete_all_library_history
+ *	- delete_all_user_history
+ *	- delete_cache
+ *	- delete_hosted_images
+ *	- delete_image_cache
+ *	- delete_library
+ *	- delete_login_log
+ *	- delete_lookup_info
+ *	- delete_media_info_cache
+ *	- delete_mobile_device
+ *	- delete_newsletter
+ *	- delete_newsletter_log
+ *	- delete_notification_log
+ *	- delete_notifier
+ *	- delete_temp_sessions
+ *	- delete_user
+ *	- docs
+ *	- docs_md
+ *	- download_config
+ *	- download_database
+ *	- download_log
+ *	- download_plex_log
+ *	- edit_library
+ *	- edit_user
+ *	- get_activity
+ *	- get_apikey
+ *	- get_date_formats						not required
+ *	- get_geoip_lookup						not required
+ *	- get_history
+ *	- get_home_stats
+ *	- get_libraries							IMPLEMENTED
+ *	- get_libraries_table
+ *	- get_library							same as -get_libraries-
+ *	- get_library_media_info
+ *	- get_library_names						reduced set of -get_libraries-
+ *	- get_library_user_stats
+ *	- get_library_watch_time_stats			IMPLEMENTED
+ *	- get_logs
+ *	- get_metadata
+ *	- get_new_rating_keys
+ *	- get_newsletter_config
+ *	- get_newsletter_log
+ *	- get_newsletters
+ *	- get_notification_log
+ *	- get_notifier_config
+ *	- get_notifier_parameters
+ *	- get_notifiers
+ *	- get_old_rating_keys
+ *	- get_plays_by_date
+ *	- get_plays_by_dayofweek
+ *	- get_plays_by_hourofday
+ *	- get_plays_by_source_resolution
+ *	- get_plays_by_stream_resolution
+ *	- get_plays_by_stream_type
+ *	- get_plays_by_top_10_platforms
+ *	- get_plays_by_top_10_users
+ *	- get_plays_per_month
+ *	- get_plex_log
+ *	- get_pms_token
+ *	- get_pms_update
+ *	- get_recently_added
+ *	- get_server_friendly_name				not required
+ *	- get_server_id
+ *	- get_server_identity
+ *	- get_server_list
+ *	- get_server_pref
+ *	- get_servers_info						IMPLEMENTED
+ *	- get_settings
+ *	- get_stream_data
+ *	- get_stream_type_by_top_10_platforms
+ *	- get_stream_type_by_top_10_users
+ *	- get_synced_items
+ *	- get_user								same as -get_users-
+ *	- get_user_ips
+ *	- get_user_logins
+ *	- get_user_names						reduced set of -get_users-
+ *	- get_user_player_stats
+ *	- get_user_watch_time_stats				IMPLEMENTED
+ *	- get_users								IMPLEMENTED
+ *	- get_users_table
+ *	- get_whois_lookup
+ *	- import_database
+ *	- install_geoip_db
+ *	- notify
+ *	- notify_newsletter
+ *	- notify_recently_added
+ *	- pms_image_proxy
+ *	- refresh_libraries_list
+ *	- refresh_users_list
+ *	- register_device
+ *	- restart
+ *	- search
+ *	- set_mobile_device_config
+ *	- set_newsletter_config
+ *	- set_notifier_config
+ *	- sql
+ *	- terminate_session
+ *	- undelete_library
+ *	- undelete_user
+ *	- uninstall_geoip_db
+ *	- update
+ *	- update_chec
+ *	- update_metadata_details
  *
  */
-function getEvent(res)
+function retrieveData()
 {
-	adapter.log.info('Received an event from Tautulli.');
-	adapter.log.debug(JSON.stringify(res));
+	var watched = {'01-last_24h': 'Watched last 24 hours', '02-last_7d': 'Watched last 7 days', '03-last_30d': 'Watched last month', '00-all_time': 'Watched all times'};
+	adapter.log.info('Retrieving information from Tautulli..');
+	
+	//
+	// https://github.com/Tautulli/Tautulli/blob/master/API.md#get_servers_info
+	//
+	library.set({node: 'servers', role: 'channel', description: 'Plex Server'}, '');
+	tautulli.get('get_servers_info').then(function(res)
+	{
+		if (!is(res)) return; else data = res.response.data;
+		
+		data.forEach(function(entry)
+		{
+			var id = entry['name'].toLowerCase();
+			for (var key in entry)
+				library.set({node: 'servers.' + id + '.' + key}, entry[key]);
+		});
+	});
+	
+	//
+	// https://github.com/Tautulli/Tautulli/blob/master/API.md#get_libraries
+	//
+	library.set({node: 'libraries', role: 'channel', description: 'Plex Libraries'}, '');
+	tautulli.get('get_libraries').then(function(res)
+	{
+		if (!is(res)) return; else data = res.response.data;
+		
+		data.forEach(function(entry)
+		{
+			var libId = entry['section_id'] + '-' + entry['section_name'].toLowerCase();
+			for (var key in entry)
+				library.set({node: 'libraries.' + libId + '.' + key, role: 'text', description: key.replace(/_/gi, ' ')}, entry[key]);
+			
+			// https://github.com/Tautulli/Tautulli/blob/master/API.md#get_library_watch_time_stats
+			library.set({node: 'libraries.' + libId + '.watched', role: 'channel', description: 'Library Watch Statistics'}, '');
+			tautulli.get('get_library_watch_time_stats', {'section_id': entry['section_id']}).then(function(res)
+			{
+				if (!is(res)) return; else data = res.response.data;
+				
+				data.forEach(function(entry, i)
+				{
+					var id = Object.keys(watched)[i];
+					library.set({node: 'libraries.' + libId + '.watched.' + id, role: 'channel', description: watched[id]}, '');
+						
+					for (var key in entry)
+					{
+						library.set({node: 'libraries.' + libId + '.watched.' + id + '.' + key, role: 'text', description: key.replace(/_/gi, ' ')}, entry[key]);
+					}
+				});
+			});
+		});
+	});
+	
+	//
+	// https://github.com/Tautulli/Tautulli/blob/master/API.md#get_users
+	//
+	library.set({node: 'users', role: 'channel', description: 'Plex Users'}, '');
+	tautulli.get('get_users').then(function(res)
+	{
+		if (!is(res)) return; else data = res.response.data;
+		
+		data.forEach(function(entry)
+		{
+			var userId = entry['friendly_name'].toLowerCase().replace(/ /gi, '_');
+			if (userId === 'local') return;
+			
+			library.set({node: 'users.' + userId, role: 'channel', description: 'User ' + entry['friendly_name']}, '');
+			library.set({node: 'users.' + userId + '.data', role: 'channel', description: 'User Information'}, '');
+			library.set({node: 'users.' + userId + '.watched', role: 'channel', description: 'User Watch Statistics'}, '');
+			
+			// fill user information
+			for (var key in entry)
+			{
+				if (key === 'server_token') continue;
+				library.set({node: 'users.' + userId + '.data.' + key, role: 'text', description: key.replace(/_/gi, ' ')}, entry[key]);
+			}
+			
+			// https://github.com/Tautulli/Tautulli/blob/master/API.md#get_user_watch_time_stats
+			tautulli.get('get_user_watch_time_stats', {'user_id': entry['user_id']}).then(function(res)
+			{
+				if (!is(res)) return; else data = res.response.data;
+				
+				data.forEach(function(entry, i)
+				{
+					var id = Object.keys(watched)[i];
+					library.set({node: 'users.' + userId + '.watched.' + id, role: 'channel', description: watched[id]}, '');
+						
+					for (var key in entry)
+					{
+						library.set({node: 'users.' + userId + '.watched.' + id + '.' + key, role: 'text', description: key.replace(/_/gi, ' ')}, entry[key]);
+					}
+				});
+			});
+		});
+	});
+	
 }
