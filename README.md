@@ -12,24 +12,36 @@ This adapter receives webhook events of Tautulli and thus by Plex Media Server.
 
 
 **Table of contents**
-1. ..
-2. ..
-3. ..
+1. Setup instructions
+   1. API settings
+   2. Webhook settings
+     1. JSON data format
+     2. Webhook data
+       1. List of available parameters
+       2. Notification Text Modifiers
+       3. Notification Exclusion Tags
+2. Smart Home / Alexa integration using ioBroker.javascript
+3. Changelog
+4. Licence
 
 
 ## Setup instructions
 Check out [Tautulli Preview](https://tautulli.com/#preview) and [install it on your preferred system](https://github.com/Tautulli/Tautulli-Wiki/wiki/Installation) if you are interested.
 
+### API settings
+Once Tautulli is installed, open the _Settings_ page from Tautulli dashboard and navigate to _Web Interface_. Scroll down to the _API_ section and make sure ```Enable API``` is checked. Copy the ```API key``` and enter it in the ioBroker.tautulli settings. Furthermore, add the Tautulli IP address and port to allow API communication.
+
+
+### Webhook settings _(not yet implemented)_
 Once installed open the settings page from Tautulli dashboard and navigate to Notification Agents as seen below:
 
 ![](/img/screenshot_install-01-settings.png)
 
 Click _Add a new notification agent_ and _Webhook_.
 
-1. **via local network**: If you are running both ioBroker and Tautulli on your local network, a local webhook is sufficient. If either one of them is on a foreign network, you may choose the option to set a webook via Internet (see below). For a local webook, enter the ioBroker IP adress with the port set in ioBroker.tautulli settings in _Webhook URL_ following the form ```http://192.168.2.99:1990```:
+For a webook, enter the ioBroker IP adress with the port set in ioBroker.tautulli settings in _Webhook URL_ following the form ```http://192.168.2.99:1990```:
 ![](/img/screenshot_install-02-webhook.png)
 
-2. **via Internet**: If ioBroker and Tautulli are running on different networks, you may set a webook via Internet using ioBroker.cloud or ioBroker.iot. **DESCRIPTION TO FOLLOW**
 
 Furthermore, choose ```PUT``` for the _Webhook Method_ and enter any description you like in _Description_. Go to the _Triggers_ tab and select all options.
 
@@ -47,12 +59,12 @@ tautulli.0	2018-12-31 18:08:38.241	info	Received an event from Tautulli.
 Finally, go to _Data_ tab and set up all messages to your needs. **This is important for ioBroker.tautulli** to receive data. For example input, see below.
 
 
-## JSON data format
+#### JSON data format
 If set up correctly, the ioBroker.tautulli adapter will receive notification from Tautulli in the JSON format.
 
 Please make sure the format **always** follows the format ```{"title": "...", "message": "..."}```. The placeholders ```...``` may be replaced by any string (and contain any variable defined in the [List of available parameters](https://github.com/Zefau/ioBroker.tautulli#list-of-available-parameters)).
 
-## Webhook data
+##### Webhook data
 
 | Type of Notification | Example of JSON data |
 | -------------------- | -------------------- |
@@ -73,8 +85,8 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | Plex Update Available | _to be defined_ |
 | Tautulli Update Available | _to be defined_ |
  
-### List of available parameters
-#### Global
+###### List of available parameters
+**Global**
 | Parameter | Description |
 | --------- | ----------- |
 | {tautulli_version} | The current version of Tautulli. |
@@ -102,7 +114,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {unixtime} | The unix timestamp when the notification is triggered. |
 | {utctime} | The UTC timestamp in ISO format when the notification is triggered. |
 
-#### Stream Details
+**Stream Details**
 | Parameter | Description |
 | --------- | ----------- |
 | {streams} | The number of concurrent streams. |
@@ -182,7 +194,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {user_id} | The unique identifier for the user. |
 | {machine_id} | The unique identifier for the player. |
 
-#### Source Metadata Details
+**Source Metadata Details**
 | Parameter | Description |
 | --------- | ----------- |
 | {media_type} | The type of media. (movie, show, season, episode, artist, album, track, clip) |
@@ -279,7 +291,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {poster_title} | The title for the poster image. |
 | {indexes} | If the media has video preview thumbnails. (0 or 1) |
 
-#### Plex Update Available
+**Plex Update Available**
 | Parameter | Description |
 | --------- | ----------- |
 | {update_version} | The available update version for your Plex Server. |
@@ -294,7 +306,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {update_changelog_added} | The added changelog for the available update. |
 | {update_changelog_fixed} | The fixed changelog for the available update. |
 
-#### Tautulli Update Available
+**Tautulli Update Available**
 | Parameter | Description |
 | --------- | ----------- |
 | {tautulli_update_version} | The available update version for Tautulli. |
@@ -306,10 +318,10 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {tautulli_update_changelog} | The changelog for the available update. |
 
 
-### Notification Text Modifiers
+###### Notification Text Modifiers
 
 
-### Notification Exclusion Tags
+###### Notification Exclusion Tags
 
 
 ## Smart Home / Alexa integration using ioBroker.javascript
