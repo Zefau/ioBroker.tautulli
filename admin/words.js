@@ -15,6 +15,40 @@ systemDictionary = {
 		"de": "Informationen"
 	},
 	
+	"auth": {
+		"en": "Connection settings of the Tautulli instance",
+		"de": "Verbindungseinstellungen der Tautulli Instanz"
+	},
+	"auth_info": {
+		"en": "The connection settings for the Tautulli instance. You will find the API key in the Tautulli dashboard via settings -> web interface in the API section (at the end of the page).",
+		"de": "Die Verbindungseinstellungen für die Tautulli Instanz. Der API Token ist im Tautulli Dashboard unter Settings -> Web Interface im API Bereich zu finden (am Ende der Seite)."
+	},
+    "ip": {
+		"en": "IP address",
+		"de": "IP Adresse"
+	},
+    "port": {
+		"en": "Port",
+		"de": "Port"
+	},
+    "api_token": {
+		"en": "API Token",
+		"de": "API Token"
+	},
+	
+	"other": {
+		"en": "Other Settings",
+		"de": "Weitere Einstellungen"
+	},
+	"refresh_info": {
+		"en": "Time for refreshing all settings / information (in seconds). If set to 0, settings will only be refreshed on adapter startup.",
+		"de": "Intervall in Sekunden, nach dem alle Einstellungen / Informationen aktualisiert werden. Wenn auf 0 eingestellt, werden Einstellungen nur bei einem Adapter-Start aktualisiert."
+	},
+	"refresh": {
+		"en": "Refresh (in seconds)",
+		"de": "Aktualisierung (in Sekunden)"
+	},
+	
 	"events": {
 		"en": "Subscribe / listen to events (Configuration of the webhook)",
 		"de": "Events abonnieren (Konfiguration des Webhooks)"
@@ -22,30 +56,6 @@ systemDictionary = {
 	"events_info": {
 		"en": "Listening to events allows you to receive events from Plex via Tautulli.",
 		"de": "Events abonnieren ermöglichen es, Notifications von Plex via Tautulli zu empfangen."
-	},
-	"webhook_iobroker": {
-		"en": "ioBroker.cloud/iot (via Internet)",
-		"de": "ioBroker.cloud/iot (über das Internet)"
-	},
-	"webhook_internal": {
-		"en": "Webhook (via internal network)",
-		"de": "Webhook (über internes Netzwerk)"
-	},
-	"iobroker_info": {
-		"en": "Use iobroker.cloud or iobroker.iot Adapter to receive events from Tautulli. <a target='_blank' href='https://github.com/Zefau/ioBroker.tautulli#advanced-setup'>See setup instructions here</a>.",
-		"de": "Benutze den iobroker.cloud oder iobroker.iot Adapter, um Events von Tautulli zu empfangen. <a target='_blank' href='https://github.com/Zefau/ioBroker.tautulli/blob/master/README.de.md#erweiterte-installation'>Siehe Anleitung zur Installation hier</a>."
-	},
-	"iobroker": {
-		"en": "ioBroker.iot Service URL",
-		"de": "ioBroker.iot Service URL"
-	},
-	"iot": {
-		"en": "ioBroker.iot Tautulli State",
-		"de": "ioBroker.iot Tautulli Objekt"
-	},
-	"internal_info": {
-		"en": "ioBroker.tautulli will always listen for events from Tautulli within the internal network.",
-		"de": "ioBroker.tautulli empfängt immer über das interne Netzwerk Benachrichtigungen von Tautulli."
 	},
 	"port": {
 		"en": "Port",
