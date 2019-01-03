@@ -15,8 +15,8 @@ This adapter receives webhook events of Tautulli and thus by Plex Media Server.
 1. Setup instructions
    1. API settings
    2. Webhook settings
-     1. JSON data format
-     2. Webhook data
+    1. JSON data format
+    2. Webhook data
        1. List of available parameters
        2. Notification Text Modifiers
        3. Notification Exclusion Tags
