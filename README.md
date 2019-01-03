@@ -2,7 +2,7 @@
 # ioBroker.tautulli
 [Tautulli is a 3rd party application](https://tautulli.com/#about) that you can run alongside your Plex Media Server to monitor activity and track various statistics. Most importantly, these statistics include what has been watched, who watched it, when and where they watched it, and how it was watched. All statistics are presented in a nice and clean interface with many tables and graphs, which makes it easy to brag about your server to everyone else.
 
-This adapter receives webhook events of Tautulli and thus by Plex Media Server.
+This adapter connects to the [Tautulli API](https://github.com/Tautulli/Tautulli/blob/master/API.md) and also receives webhook events from both Tautulli and Plex (the latter requires Plex Pass).
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.tautulli.svg)](https://www.npmjs.com/package/iobroker.tautulli)
 [![Travis CI](https://travis-ci.org/Zefau/ioBroker.tautulli.svg?branch=master)](https://travis-ci.org/Zefau/ioBroker.tautulli)
