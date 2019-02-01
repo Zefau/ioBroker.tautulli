@@ -2,63 +2,17 @@
 'use strict';
 
 systemDictionary = {
-	"tab_config": {
-		"en": "Configuration",
-		"de": "Einstellungen"
-	},
-	"tab_alexa": {
-		"en": "Alexa integration",
-		"de": "Alexa Integration"
-	},
-	"tab_info": {
-		"en": "Information",
-		"de": "Informationen"
-	},
-	
-	"auth": {
-		"en": "Connection settings of the Tautulli instance",
-		"de": "Verbindungseinstellungen der Tautulli Instanz"
-	},
-	"auth_info": {
-		"en": "The connection settings for the Tautulli instance. You will find the API key in the Tautulli dashboard via settings -> web interface in the API section (at the end of the page).",
-		"de": "Die Verbindungseinstellungen für die Tautulli Instanz. Der API Token ist im Tautulli Dashboard unter Settings -> Web Interface im API Bereich zu finden (am Ende der Seite)."
-	},
-    "ip": {
-		"en": "IP address",
-		"de": "IP Adresse"
-	},
-    "port": {
-		"en": "Port",
-		"de": "Port"
-	},
-    "api_token": {
-		"en": "API Token",
-		"de": "API Token"
-	},
-	
-	"other": {
-		"en": "Other Settings",
-		"de": "Weitere Einstellungen"
-	},
-	"refresh_info": {
-		"en": "Time for refreshing all settings / information (in seconds). If set to 0, settings will only be refreshed on adapter startup.",
-		"de": "Intervall in Sekunden, nach dem alle Einstellungen / Informationen aktualisiert werden. Wenn auf 0 eingestellt, werden Einstellungen nur bei einem Adapter-Start aktualisiert."
-	},
-	"refresh": {
-		"en": "Refresh (in seconds)",
-		"de": "Aktualisierung (in Sekunden)"
-	},
-	
-	"events": {
-		"en": "Subscribe / listen to events (Configuration of the webhook)",
-		"de": "Events abonnieren (Konfiguration des Webhooks)"
-	},
-	"events_info": {
-		"en": "Listening to events allows you to receive events from Plex via Tautulli.",
-		"de": "Events abonnieren ermöglichen es, Notifications von Plex via Tautulli zu empfangen."
-	},
-	"port": {
-		"en": "Port",
-		"de": "Port"
-	},
+    "api_token": {                                   "en": "API Token",                                       "de": "API Token",                                       "ru": "API-токен",                                       "pt": "Token da API",                                    "nl": "API-token",                                       "fr": "Jeton API",                                       "it": "Token API",                                       "es": "API token",                                       "pl": "Token API",                                       "zh-cn": "API令牌"},
+    "auth": {                                        "en": "Connection settings of the Tautulli instance",    "de": "Verbindungseinstellungen der Tautulli Instanz",   "ru": "Настройки подключения экземпляра Tautulli",       "pt": "Configurações de conexão da instância Tautulli",  "nl": "Verbindingsinstellingen van de instantie Tautulli", "fr": "Paramètres de connexion de l'instance Tautulli",  "it": "Impostazioni di connessione dell'istanza di Tautulli", "es": "Ajustes de conexión de la instancia de Tautulli.", "pl": "Ustawienia połączenia instancji Tautulli",        "zh-cn": "Tautulli实例的连接设置"},
+    "auth_info": {                                   "en": "The connection settings for the Tautulli instance. You will find the API key in the Tautulli dashboard via settings -> web interface in the API section (at the end of the page).", "de": "Die Verbindungseinstellungen für die Tautulli Instanz. Der API Token ist im Tautulli Dashboard unter Settings -> Web Interface im API Bereich zu finden (am Ende der Seite).", "ru": "Настройки подключения для экземпляра Tautulli. ", "pt": "As configurações de conexão para a instância Tautulli. ", "nl": "De verbindingsinstellingen voor de instantie Tautulli. ", "fr": "Les paramètres de connexion pour l'instance Tautulli. ", "it": "Le impostazioni di connessione per l'istanza Tautulli. ", "es": "Los ajustes de conexión para la instancia de Tautulli. ", "pl": "Ustawienia połączenia dla instancji Tautulli. ",  "zh-cn": "Tautulli实例的连接设置。"},
+    "events": {                                      "en": "Subscribe / listen to events (Configuration of the webhook)", "de": "Events abonnieren (Konfiguration des Webhooks)",  "ru": "Подписаться / прослушать события (настройка webhook)", "pt": "Assinar / ouvir eventos (Configuração do webhook)", "nl": "Abonneren / luisteren naar evenementen (configuratie van de webhook)", "fr": "S'abonner / écouter des événements (Configuration du Webhook)", "it": "Iscriviti / ascolta gli eventi (Configurazione del webhook)", "es": "Suscribirse / escuchar eventos (Configuración del webhook)", "pl": "Subskrybuj / słuchaj wydarzeń (konfiguracja webhooka)", "zh-cn": "订阅/收听活动（webhook的配置）"},
+    "events_info": {                                 "en": "Listening to events allows you to receive events from Plex via Tautulli.", "de": "Events abonnieren ermöglichen es, Notifications von Plex via Tautulli zu empfangen.", "ru": "Прослушивание событий позволяет получать события из Plex через Tautulli.", "pt": "Ouvir eventos permite que você receba eventos do Plex via Tautulli.", "nl": "Door naar gebeurtenissen te luisteren, kunt u via Tautulli evenementen van Plex ontvangen.", "fr": "L'écoute d'événements vous permet de recevoir des événements de Plex via Tautulli.", "it": "L'ascolto di eventi consente di ricevere eventi da Plex tramite Tautulli.", "es": "Escuchar eventos le permite recibir eventos de Plex a través de Tautulli.", "pl": "Słuchanie wydarzeń pozwala na odbieranie zdarzeń od Plex przez Tautulli.", "zh-cn": "通过收听活动，您可以通过Tautulli从Plex接收活动。"},
+    "ip": {                                          "en": "IP address",                                      "de": "IP Adresse",                                      "ru": "айпи адрес",                                      "pt": "endereço de IP",                                  "nl": "IP adres",                                        "fr": "adresse IP",                                      "it": "indirizzo IP",                                    "es": "dirección IP",                                    "pl": "adres IP",                                        "zh-cn": "IP地址"},
+    "other": {                                       "en": "Other Settings",                                  "de": "Weitere Einstellungen",                           "ru": "Другие настройки",                                "pt": "Outros ajustes",                                  "nl": "Andere instellingen",                             "fr": "Autres réglages",                                 "it": "Altre impostazioni",                              "es": "Otros ajustes",                                   "pl": "Inne ustawienia",                                 "zh-cn": "其他设置"},
+    "port": {                                        "en": "Port",                                            "de": "Port",                                            "ru": "порт",                                            "pt": "Porta",                                           "nl": "Haven",                                           "fr": "Port",                                            "it": "Porta",                                           "es": "Puerto",                                          "pl": "Port",                                            "zh-cn": "港口"},
+    "refresh": {                                     "en": "Refresh (in seconds)",                            "de": "Aktualisierung (in Sekunden)",                    "ru": "Обновить (в секундах)",                           "pt": "Atualizar (em segundos)",                         "nl": "Vernieuwen (in seconden)",                        "fr": "Actualiser (en secondes)",                        "it": "Aggiorna (in secondi)",                           "es": "Actualizar (en segundos)",                        "pl": "Odśwież (w sekundach)",                           "zh-cn": "刷新（以秒为单位）"},
+    "refresh_info": {                                "en": "Time for refreshing all settings / information (in seconds). If set to 0, settings will only be refreshed on adapter startup.", "de": "Intervall in Sekunden, nach dem alle Einstellungen / Informationen aktualisiert werden. Wenn auf 0 eingestellt, werden Einstellungen nur bei einem Adapter-Start aktualisiert.", "ru": "Время обновления всех настроек / информации (в секундах). ", "pt": "Hora de atualizar todas as configurações / informações (em segundos). ", "nl": "Tijd voor het vernieuwen van alle instellingen / informatie (in seconden). ", "fr": "Temps d'actualisation de tous les paramètres / informations (en secondes). ", "it": "Tempo di aggiornamento di tutte le impostazioni / informazioni (in secondi). ", "es": "Tiempo para actualizar todos los ajustes / información (en segundos). ", "pl": "Czas na odświeżenie wszystkich ustawień / informacji (w sekundach). ", "zh-cn": "刷新所有设置/信息的时间（以秒为单位）。"},
+    "tab_alexa": {                                   "en": "Alexa integration",                               "de": "Alexa Integration",                               "ru": "Интеграция Alexa",                                "pt": "Integração Alexa",                                "nl": "Alexa-integratie",                                "fr": "Intégration Alexa",                               "it": "Integrazione con Alexa",                          "es": "Integración de Alexa",                            "pl": "Integracja z Alexą",                              "zh-cn": "Alexa整合"},
+    "tab_config": {                                  "en": "Configuration",                                   "de": "Einstellungen",                                   "ru": "конфигурация",                                    "pt": "Configuração",                                    "nl": "Configuratie",                                    "fr": "Configuration",                                   "it": "Configurazione",                                  "es": "Configuración",                                   "pl": "Konfiguracja",                                    "zh-cn": "组态"},
+    "tab_info": {                                    "en": "Information",                                     "de": "Informationen",                                   "ru": "Информация",                                      "pt": "Em formação",                                     "nl": "Informatie",                                      "fr": "Information",                                     "it": "Informazione",                                    "es": "Información",                                     "pl": "Informacja",                                      "zh-cn": "信息"},
 };

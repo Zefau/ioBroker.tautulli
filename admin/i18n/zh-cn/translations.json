@@ -1,0 +1,15 @@
+{
+    "api_token": "API令牌",
+    "auth": "Tautulli实例的连接设置",
+    "auth_info": "Tautulli实例的连接设置。",
+    "events": "订阅/收听活动（webhook的配置）",
+    "events_info": "通过收听活动，您可以通过Tautulli从Plex接收活动。",
+    "ip": "IP地址",
+    "other": "其他设置",
+    "port": "港口",
+    "refresh": "刷新（以秒为单位）",
+    "refresh_info": "刷新所有设置/信息的时间（以秒为单位）。",
+    "tab_alexa": "Alexa整合",
+    "tab_config": "组态",
+    "tab_info": "信息"
+}

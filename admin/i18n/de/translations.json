@@ -1,0 +1,15 @@
+{
+    "api_token": "API Token",
+    "auth": "Verbindungseinstellungen der Tautulli Instanz",
+    "auth_info": "Die Verbindungseinstellungen für die Tautulli Instanz. Der API Token ist im Tautulli Dashboard unter Settings -> Web Interface im API Bereich zu finden (am Ende der Seite).",
+    "events": "Events abonnieren (Konfiguration des Webhooks)",
+    "events_info": "Events abonnieren ermöglichen es, Notifications von Plex via Tautulli zu empfangen.",
+    "ip": "IP Adresse",
+    "other": "Weitere Einstellungen",
+    "port": "Port",
+    "refresh": "Aktualisierung (in Sekunden)",
+    "refresh_info": "Intervall in Sekunden, nach dem alle Einstellungen / Informationen aktualisiert werden. Wenn auf 0 eingestellt, werden Einstellungen nur bei einem Adapter-Start aktualisiert.",
+    "tab_alexa": "Alexa Integration",
+    "tab_config": "Einstellungen",
+    "tab_info": "Informationen"
+}

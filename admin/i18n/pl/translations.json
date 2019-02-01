@@ -1,0 +1,15 @@
+{
+    "api_token": "Token API",
+    "auth": "Ustawienia połączenia instancji Tautulli",
+    "auth_info": "Ustawienia połączenia dla instancji Tautulli. ",
+    "events": "Subskrybuj / słuchaj wydarzeń (konfiguracja webhooka)",
+    "events_info": "Słuchanie wydarzeń pozwala na odbieranie zdarzeń od Plex przez Tautulli.",
+    "ip": "adres IP",
+    "other": "Inne ustawienia",
+    "port": "Port",
+    "refresh": "Odśwież (w sekundach)",
+    "refresh_info": "Czas na odświeżenie wszystkich ustawień / informacji (w sekundach). ",
+    "tab_alexa": "Integracja z Alexą",
+    "tab_config": "Konfiguracja",
+    "tab_info": "Informacja"
+}

@@ -1,0 +1,15 @@
+{
+    "api_token": "Jeton API",
+    "auth": "Paramètres de connexion de l'instance Tautulli",
+    "auth_info": "Les paramètres de connexion pour l'instance Tautulli. ",
+    "events": "S'abonner / écouter des événements (Configuration du Webhook)",
+    "events_info": "L'écoute d'événements vous permet de recevoir des événements de Plex via Tautulli.",
+    "ip": "adresse IP",
+    "other": "Autres réglages",
+    "port": "Port",
+    "refresh": "Actualiser (en secondes)",
+    "refresh_info": "Temps d'actualisation de tous les paramètres / informations (en secondes). ",
+    "tab_alexa": "Intégration Alexa",
+    "tab_config": "Configuration",
+    "tab_info": "Information"
+}
