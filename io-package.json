@@ -2,14 +2,15 @@
     "common": {
         "name": "tautulli",
         "version": "0.2.0",
-        "title": "Monitor your Plex Media Server",
+        "title": "Tautulli",
         "desc": {
             "en": "Tautulli Adapter to monitor your Plex Media Server",
             "de": "Tautulli Adapter zum Überwachen des Plex Media Servers"
         },
         "news": {
             "0.2.0": {
-                "en": "added support for Compact Mode"
+                "en": "added support for Compact Mode",
+				"de": "Unterstützung für Compact Mode hinzugefügt"
             },
             "0.1.0": {
                 "en": "initial checkin",
@@ -29,7 +30,9 @@
         ],
         "readme": "https://github.com/Zefau/ioBroker.tautulli/blob/master/README.md",
         "loglevel": "info",
-	"materialize": true,
+        "materialize": true,
+        "compact": true,
+        "enabled": true,
         "type": "multimedia",
         "authors": [
             {

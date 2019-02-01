@@ -1,71 +1,88 @@
 'use strict';
+const adapterName = require('./io-package.json').common.name;
 const utils = require(__dirname + '/lib/utils'); // Get common adapter utils
-const adapter = utils.Adapter('tautulli');
 
-const _Tautulli = require('tautulli-api');
 
 /*
  * internal libraries
  */
 const Library = require(__dirname + '/lib/library.js');
+const Tautulli = require('tautulli-api');
 const params = require(__dirname + '/tautulli-parameters.json');
 
 /*
  * variables initiation
  */
-var library = new Library(adapter);
+var adapter;
+var library;
 var tautulli, data;
 
 /*
- * ADAPTER UNLOAD
+ * ADAPTER
  *
  */
-adapter.on('unload', function(callback)
+function startAdapter(options)
 {
-    try
+	options = options || {};
+	Object.assign(options,
 	{
-        adapter.log.info('Adapter stopped und unloaded.');
-        callback();
-    }
-	catch(e)
-	{
-        callback();
-    }
-});
+		name: adapterName
+	});
+	
+	adapter = new utils.Adapter(options);
+	library = new Library(adapter);
 
-/*
- * ADAPTER READY
- *
- */
-adapter.on('ready', function()
-{
 	/*
-	 * initialize Tautulli API
+	 * ADAPTER READY
 	 *
 	 */
-	if (!adapter.config.api_ip || !adapter.config.api_token)
+	adapter.on('ready', function()
 	{
-		adapter.log.warn('IP or API token missing! Please go to settings and fill in IP and the API token first!');
-		return;
-	}
-	
-	// initialize tautulli class
-	tautulli = new _Tautulli(adapter.config.api_ip, adapter.config.api_port || '8181', adapter.config.api_token);
-	
-	retrieveData();
-	if (adapter.config.refresh !== undefined && adapter.config.refresh > 10)
-		setInterval(function() {retrieveData()}, Math.round(parseInt(adapter.config.refresh)*1000));
-});
+		// initialize Tautulli API
+		if (!adapter.config.api_ip || !adapter.config.api_token)
+		{
+			adapter.log.warn('IP or API token missing! Please go to settings and fill in IP and the API token first!');
+			return;
+		}
+		
+		// initialize tautulli class
+		tautulli = new Tautulli(adapter.config.api_ip, adapter.config.api_port || '8181', adapter.config.api_token);
+		
+		retrieveData();
+		if (adapter.config.refresh !== undefined && adapter.config.refresh > 10)
+			setInterval(function() {retrieveData()}, Math.round(parseInt(adapter.config.refresh)*1000));
+	});
 
-/*
- * STATE CHANGE
- *
- */
-adapter.on('stateChange', function(id, state)
-{
-	adapter.log.debug('State of ' + id + ' has changed ' + JSON.stringify(state) + '.');
+	/*
+	 * STATE CHANGE
+	 *
+	 */
+	adapter.on('stateChange', function(id, state)
+	{
+		adapter.log.debug('State of ' + id + ' has changed ' + JSON.stringify(state) + '.');
+		
+	});
 	
-});
+	/*
+	 * ADAPTER UNLOAD
+	 *
+	 */
+	adapter.on('unload', function(callback)
+	{
+		try
+		{
+			adapter.log.info('Adapter stopped und unloaded.');
+			callback();
+		}
+		catch(e)
+		{
+			callback();
+		}
+	});
+
+	return adapter;	
+};
+
 
 /**
  * Verify is API response is successful.
@@ -302,3 +319,13 @@ function retrieveData()
 	});
 	
 }
+
+/*
+ * COMPACT MODE
+ * If started as allInOne/compact mode => return function to create instance
+ *
+ */
+if (module && module.parent)
+	module.exports = startAdapter;
+else
+	startAdapter(); // or start the instance directly
