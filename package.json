@@ -1,6 +1,6 @@
 {
   "name": "iobroker.tautulli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Monitor your Plex Media Server",
   "author": {
     "name": "zefau",
@@ -28,9 +28,10 @@
     "tautulli-api": "^1.0.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "mocha": "^4.1.0",
-    "chai": "^4.1.2"
+    "axios": "^0.18.0",
+    "chai": "^4.1.2",
+    "gulp": "^4.0.0",
+    "mocha": "^4.1.0"
   },
   "main": "main.js",
   "scripts": {
