@@ -1,13 +1,16 @@
 {
     "common": {
         "name": "tautulli",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "title": "Monitor your Plex Media Server",
         "desc": {
             "en": "Tautulli Adapter to monitor your Plex Media Server",
             "de": "Tautulli Adapter zum Überwachen des Plex Media Servers"
         },
         "news": {
+            "0.2.0": {
+                "en": "added support for Compact Mode"
+            },
             "0.1.0": {
                 "en": "initial checkin",
                 "de": "Erste version",
