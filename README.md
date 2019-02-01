@@ -28,7 +28,11 @@ Once Tautulli is installed, open the _Settings_ page from Tautulli dashboard and
 
 ## Changelog
 
-### 0.1.0 (2018-12-XX)
+### 0.2.0 (2019-02-01)
+* (zefau) added support for Compact Mode
+* (zefau) added support for gulp
+
+### 0.1.0 (2019-01-03)
 * (zefau) initial release
 
 
