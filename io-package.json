@@ -33,7 +33,7 @@
         "materialize": true,
         "compact": true,
         "enabled": true,
-	"localLink": "http://%api_ip%:%api_port%/home",
+		"localLink": "http://%apiIp%:%apiPort%/home",
         "type": "multimedia",
         "authors": [
             {
@@ -43,11 +43,11 @@
         ]
     },
     "native": {
-	"api_ip": "",
-	"api_port": "8181",
-	"api_token": "",
-	"refresh": "",
-	"port": ""
+		"apiIp": "",
+		"apiPort": "8181",
+		"apiToken": "",
+		"refresh": "",
+		"port": ""
     },
     "objects": [],
     "instanceObjects": [

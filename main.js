@@ -39,14 +39,14 @@ function startAdapter(options)
 	adapter.on('ready', function()
 	{
 		// initialize Tautulli API
-		if (!adapter.config.api_ip || !adapter.config.api_token)
+		if (!adapter.config.apiIp || !adapter.config.apiToken)
 		{
 			adapter.log.warn('IP or API token missing! Please go to settings and fill in IP and the API token first!');
 			return;
 		}
 		
 		// initialize tautulli class
-		tautulli = new Tautulli(adapter.config.api_ip, adapter.config.api_port || '8181', adapter.config.api_token);
+		tautulli = new Tautulli(adapter.config.apiIp, adapter.config.apiPort || '8181', adapter.config.apiToken);
 		
 		retrieveData();
 		if (adapter.config.refresh !== undefined && adapter.config.refresh > 10)
