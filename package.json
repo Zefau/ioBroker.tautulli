@@ -25,7 +25,9 @@
     "url": "https://github.com/Zefau/ioBroker.tautulli"
   },
   "dependencies": {
-    "tautulli-api": "^1.0.0"
+    "tautulli-api": "^1.0.0",
+    "express": "^4.16.3",
+    "body-parser": "^1.18.2"
   },
   "devDependencies": {
     "axios": "^0.18.0",
