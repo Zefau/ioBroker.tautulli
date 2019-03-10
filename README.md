@@ -4,7 +4,7 @@
 
 This adapter connects to the [Tautulli API](https://github.com/Tautulli/Tautulli/blob/master/API.md) and also receives webhook events from both Tautulli and Plex (the latter requires Plex Pass).
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.tautulli.svg)](https://www.npmjs.com/package/iobroker.tautulli)
+![Number of Installations](http://iobroker.live/badges/tautulli-installed.svg) ![Number of Installations](http://iobroker.live/badges/tautulli-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.tautulli.svg)](https://www.npmjs.com/package/iobroker.tautulli)
 [![Travis CI](https://travis-ci.org/Zefau/ioBroker.tautulli.svg?branch=master)](https://travis-ci.org/Zefau/ioBroker.tautulli)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tautulli.svg)](https://www.npmjs.com/package/iobroker.tautulli)
 
