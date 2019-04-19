@@ -87,6 +87,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
  
 ###### List of available parameters
 **Global**
+
 | Parameter | Description |
 | --------- | ----------- |
 | {tautulli_version} | The current version of Tautulli. |
@@ -115,6 +116,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {utctime} | The UTC timestamp in ISO format when the notification is triggered. |
 
 **Stream Details**
+
 | Parameter | Description |
 | --------- | ----------- |
 | {streams} | The number of concurrent streams. |
@@ -195,6 +197,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {machine_id} | The unique identifier for the player. |
 
 **Source Metadata Details**
+
 | Parameter | Description |
 | --------- | ----------- |
 | {media_type} | The type of media. (movie, show, season, episode, artist, album, track, clip) |
@@ -292,6 +295,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {indexes} | If the media has video preview thumbnails. (0 or 1) |
 
 **Plex Update Available**
+
 | Parameter | Description |
 | --------- | ----------- |
 | {update_version} | The available update version for your Plex Server. |
@@ -307,6 +311,7 @@ Please make sure the format **always** follows the format ```{"title": "...", "m
 | {update_changelog_fixed} | The fixed changelog for the available update. |
 
 **Tautulli Update Available**
+
 | Parameter | Description |
 | --------- | ----------- |
 | {tautulli_update_version} | The available update version for Tautulli. |
